@@ -1,10 +1,12 @@
 nginx:
-    image: cityos/bfu-nginx
+    image: nginx
     restart: always
     volumes:
         - ./joop/conf/nginx:/etc/nginx/conf.d
+        - ./joop/src/frontend:/usr/share/nginx/html
     ports:
         - 80:80
+        - 443:443
 ysql:
     image: mysql
     restart: always
