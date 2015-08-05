@@ -1,0 +1,15 @@
+nginx:
+    image: cityos/bfu-nginx
+    restart: always
+    volumes:
+        - ./joop/conf/nginx:/etc/nginx/conf.d
+    ports:
+        - 80:80
+ysql:
+    image: mysql
+    restart: always
+    volumes:
+        - ./joop/volumes/mysql:/var/lib/mysql
+        - ./joop/conf/mysql:/etc/mysql/conf.d
+    environment:
+        - MYSQL_ALLOW_EMPTY_PASSWORD
