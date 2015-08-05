@@ -2,8 +2,8 @@ nginx:
     image: nginx
     restart: always
     volumes:
-        - ./joop/conf/nginx:/etc/nginx/conf.d
-        - ./joop/src/frontend:/usr/share/nginx/html
+        - ./claire/conf/nginx:/etc/nginx/conf.d
+        - ./claire/src/frontend:/usr/share/nginx/html
     ports:
         - 80:80
         - 443:443
@@ -11,7 +11,7 @@ ysql:
     image: mysql
     restart: always
     volumes:
-        - ./joop/volumes/mysql:/var/lib/mysql
-        - ./joop/conf/mysql:/etc/mysql/conf.d
+        - ./claire/volumes/mysql:/var/lib/mysql
+        - ./claire/conf/mysql:/etc/mysql/conf.d
     environment:
         - MYSQL_ALLOW_EMPTY_PASSWORD
