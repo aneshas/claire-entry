@@ -1,3 +1,12 @@
+go:
+    image: golang:1.4
+    restart: always
+    volumes:
+        - ~/go/src/github.com/aneshas/claire-go-backend:/go/src/app
+        - ./claire/sh:/run
+    links:
+        - mysql
+    entrypoint: /run/loop.sh
 nginx:
     image: nginx
     restart: always
@@ -7,11 +16,11 @@ nginx:
     ports:
         - 80:80
         - 443:443
-ysql:
+mysql:
     image: mysql
     restart: always
     volumes:
         - ./claire/volumes/mysql:/var/lib/mysql
         - ./claire/conf/mysql:/etc/mysql/conf.d
     environment:
-        - MYSQL_ALLOW_EMPTY_PASSWORD
+        - MYSQL_ALLOW_EMPTY_PASSWORD=yes
