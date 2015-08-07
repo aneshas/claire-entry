@@ -1,16 +1,19 @@
 go:
-    image: cityos/supervisor
+    image: cityos/go-host
     restart: always
     volumes:
-        ./claire/bin:/go/bin
+        # TODO change to ./claire/src/backend:/go/src/app
+        - ~/go/src/github.com/aneshas/claire-go-backend:/go/src/app
     links:
         - mysql
+    #entrypoint: /run.sh
+    entrypoint: /idle.sh
 nginx:
     image: nginx
     restart: always
     volumes:
         - ./claire/conf/nginx:/etc/nginx/conf.d
-        - ./claire/src/claire-frontend:/usr/share/nginx/html
+        - ./claire/src/frontend:/usr/share/nginx/html
     ports:
         - 80:80
         - 443:443
