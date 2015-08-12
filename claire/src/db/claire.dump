@@ -1,0 +1,135 @@
+-- MySQL dump 10.13  Distrib 5.6.26, for Linux (x86_64)
+--
+-- Host: localhost    Database: claire
+-- ------------------------------------------------------
+-- Server version	5.6.26
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `make`
+--
+
+CREATE DATABASE IF NOT EXISTS `claire`;
+
+USE `claire`;
+
+DROP TABLE IF EXISTS `make`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `make` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` text NOT NULL,
+  `photo` char(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `make`
+--
+
+LOCK TABLES `make` WRITE;
+/*!40000 ALTER TABLE `make` DISABLE KEYS */;
+INSERT INTO `make` VALUES (1,'BMW','Bayerische Motoren Werke AG, commonly known as BMW or BMW AG, is a German automobile, motorcycle and engine manufacturing company founded in 1916. BMW is headquartered in Munich, Bavaria, Germany.','https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'),(2,'Tesla Mototrs','Tesla Motors, Inc. is an American automotive and energy storage company that designs, manufactures, and sells electric cars, electric vehicle powertrain components, and battery products.','https://upload.wikimedia.org/wikipedia/en/thumb/6/68/Tesla_Motors_logo.svg/346px-Tesla_Motors_logo.svg.png'),(3,'Mercedes-Benz','Mercedes-Benz is a German automobile manufacturer, a multinational division of the German manufacturer Daimler AG. The brand is used for luxury automobiles, buses, coaches, and trucks.','https://upload.wikimedia.org/wikipedia/it/thumb/6/6c/Logo_della_Mercedes-Benz.svg/1280px-Logo_della_Mercedes-Benz.svg.png');
+/*!40000 ALTER TABLE `make` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `model`
+--
+
+DROP TABLE IF EXISTS `model`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `model` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` text NOT NULL,
+  `photo` char(128) NOT NULL,
+  `make_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `model_make_id` (`make_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `model`
+--
+
+LOCK TABLES `model` WRITE;
+/*!40000 ALTER TABLE `model` DISABLE KEYS */;
+INSERT INTO `model` VALUES (1,'Model S','Teslas advanced electric powertrain delivers exhilarating performance. Unlike a gasoline internal combustion engine with hundreds of moving parts, Tesla electric motors have only one moving piece: the rotor. As a result, Model S acceleration is instantaneous, silent and smooth. Step on the accelerator and in as little as 2.8 seconds Model S is travelling 60 miles per hour, without hesitation, and without a drop of gasoline. Model S is an evolution in automobile engineering.','http://www.teslamotors.com/sites/default/files/images/model-s/gallery/exterior/hero-01.jpg',2),(2,'Model X','Model X combines the space and functionality of a seven seat sport utility vehicle with the uncompromised performance of a Tesla.\n\nEvery Model X comes with all-wheel drive standard, powered by two independent, digitally controlled electric motors. Brilliantly functional Falcon Wing rear doors fold up and out of the way to allow easy access to third row seats.','http://www.teslamotors.com/sites/default/files/images/model-x/teaser@2x.jpg',2);
+/*!40000 ALTER TABLE `model` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `model_tag`
+--
+
+DROP TABLE IF EXISTS `model_tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `model_tag` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `model_id` int(10) unsigned NOT NULL,
+  `tag_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `model_id_idx` (`model_id`),
+  KEY `tag_id_idx` (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `model_tag`
+--
+
+LOCK TABLES `model_tag` WRITE;
+/*!40000 ALTER TABLE `model_tag` DISABLE KEYS */;
+/*!40000 ALTER TABLE `model_tag` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tag`
+--
+
+DROP TABLE IF EXISTS `tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tag` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tag`
+--
+
+LOCK TABLES `tag` WRITE;
+/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
+INSERT INTO `tag` VALUES (1,'sport'),(2,'family'),(3,'offroad'),(4,'electric'),(5,'gasoline'),(6,'diesel'),(7,'cabrio');
+/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-08-12 11:49:59

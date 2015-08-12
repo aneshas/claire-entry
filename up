@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Creating docker containers..."
+docker-compose up -d
+
+echo "Creating database..."
+sleep 6 
+docker exec -it claireentry_mysql_1 /data/run.sh
+
+echo "Building application..."
+docker exec -it claireentry_go_1 /run.sh

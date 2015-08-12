@@ -3,10 +3,10 @@ go:
     restart: always
     volumes:
         # TODO change to ./claire/src/backend:/go/src/app
+        # after adding it as github submodule
         - ~/go/src/github.com/aneshas/claire-go-backend:/go/src/app
     links:
         - mysql
-    #entrypoint: /run.sh
     entrypoint: /idle.sh
 nginx:
     image: nginx
@@ -15,15 +15,15 @@ nginx:
         - ./claire/conf/nginx:/etc/nginx/conf.d
         - ./claire/src/frontend:/usr/share/nginx/html
     ports:
-        - 80:80
-        - 443:443
+        - "80:80"
     links:
         - go
 mysql:
     image: mysql
     restart: always
     volumes:
-        - ./claire/volumes/mysql:/var/lib/mysql
+        - ./claire/src/db:/data
         - ./claire/conf/mysql:/etc/mysql/conf.d
     environment:
+        - MYSQL_DATABASE=claire
         - MYSQL_ALLOW_EMPTY_PASSWORD=yes
