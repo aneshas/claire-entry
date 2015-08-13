@@ -4,6 +4,6 @@ echo "Stopping containers..."
 docker-compose stop > /dev/null
 
 echo "Cleaning up..."
-docker-compose rm -v -f > /dev/null
+docker-compose rm -v --force > /dev/null
 
 echo "Done."
