@@ -1,6 +1,6 @@
 [submodule "claire/src/frontend"]
 	path = claire/src/frontend
-	url = git@github.com:aneshas/claire-frontend.git
+	url = https://github.com/aneshas/claire-frontend
 [submodule "claire/src/backend"]
 	path = claire/src/backend
-	url = git@github.com:aneshas/claire-go-backend.git
+	url = https://github.com/aneshas/claire-go-backend
