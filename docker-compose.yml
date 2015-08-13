@@ -2,9 +2,8 @@ go:
     image: cityos/go-host
     restart: always
     volumes:
-        # TODO change to ./claire/src/backend:/go/src/app
-        # after adding it as github submodule
-        - ~/go/src/github.com/aneshas/claire-go-backend:/go/src/app
+        - ./claire/src/backend:/go/src/app
+        #- ~/go/src/github.com/aneshas/claire-go-backend:/go/src/app
     links:
         - mysql
     entrypoint: /idle.sh

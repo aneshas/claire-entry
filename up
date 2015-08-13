@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Updating submodules..."
+git submodule update --init
 
 echo "Creating docker containers..."
 docker-compose up -d
