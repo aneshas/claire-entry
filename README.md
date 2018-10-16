@@ -1,5 +1,5 @@
 # Claire Entry Project
-Entry test project for Claire.nl
+Entry test project for [clairesoftware.nl](https://clairesoftware.nl)
 
 # Usage
 Clone this repo, and run `./up` from the folder, which will pull all of the docker images, run containers, pull the code from github and build and run the app.
